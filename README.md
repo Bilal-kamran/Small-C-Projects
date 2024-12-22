@@ -1,7 +1,22 @@
-Small C Projects
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Welcome to my Small C Projects repository! This space is dedicated to documenting my learning journey in the C programming language. As I explore and build various projects, I’ll be sharing them here for educational purposes.
+# Small C Projects
+Welcome to my Small C Projects repository! This collection documents my journey in learning C programming and aims to help beginners who are just starting out.
 
-Whether you’re here to learn from my projects or to offer guidance and support on my programming adventure, your presence is highly appreciated. This repository, along with others like it, will be a permanent fixture.
+**NOTE**: Unfortunately, I’ve lost many of my earlier C projects (50+), but I will continue adding new projects to grow this repository.
 
-Dive into the code, see how I’ve tackled different challenges, and feel free to contribute your thoughts and knowledge. Together, we can make this a rich learning experience for everyone involved!
+## Projects
+In this repository, you'll find a variety of small C programs that cover different topics such as:
+
+- Algorithms
+- Data structures
+- System programming
+- Problem-solving exercises
+- Each project includes a brief description and the source code. Feel free to explore and learn!
+
+## Contributing
+Contributions are welcome! If you want to help improve this repository or add more projects, please follow these steps:
+
+- Fork the repository
+- Create a new branch for your feature or fix
+- Make your changes
+- Submit a pull request with a description of your changes
+- I’d especially appreciate contributions from others who are also learning C or have experience with the language.
