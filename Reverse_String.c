@@ -16,10 +16,10 @@ void revstr1(const char *str, char *output, size_t size);
 char *revstr2(const char *str);
 
 // Other nessecary functions as I am avoiding library function for learning.
-int strcomp(const char *str1, const char *str2);
 size_t str_len(const char *str);
 
-int main() {
+int main()
+{
 	char string[6] = "hello";
 	char buffer[7];
 
@@ -29,17 +29,18 @@ int main() {
 
 	printf("The string after reversal is: %s\n", buffer);
 
-	//    printf("The string before reversal via fn2 is: %s\n", string);
-	//
-	//    char *p = revstr2(string);
-	//
-	//    printf("The string after reversal via fn2 is: %p\n", *p);
+	printf("The string before reversal via fn2 is: %s\n", string);
+
+	char *p = revstr2(string);
+
+	printf("The string after reversal via fn2 is: %p\n", *p);
 
 	return 0;
 }
 
-void revstr1(const char *str, char *output, size_t size) {
-	size_t length = strlen(str);
+void revstr1(const char *str, char *output, size_t size)
+{
+	size_t length = str_len(str);
 
 	if(length + 1 > size) {
 		fprintf(stderr, "ERROR: The passed size is invalid\n");
@@ -58,7 +59,8 @@ void revstr1(const char *str, char *output, size_t size) {
 	output[length] = '\0';
 }
 
-char *revstr2(const char *str) {
+char *revstr2(const char *str)
+{
 	static char *buffer;
 	size_t length = str_len(str);
 
@@ -73,20 +75,11 @@ char *revstr2(const char *str) {
 	return buffer;
 }
 
-int strcomp(const char *str1, const char *str2) {
-	while(*str1 && *str1 == *str2) {
-		str1++;
-		str2++;
-	}
-
-	return *str1 - *str2;
-}
-
-size_t str_len(const char str) {
+size_t str_len(const char *str) {
 	size_t length = 0;
 	int i = 0;
 
-	while(strcomp(&str[i], '\0')) {
+	while (*(str + i) != '\0') {
 		length++;
 		i++;
 	}
