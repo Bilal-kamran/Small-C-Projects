@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 
 /*
  * This function takes in a constant pointer to the passed argument,
@@ -11,7 +11,8 @@ void revstr1(const char *str, char *output, size_t size);
 /*
  * This function below takes a constant pointer to the passed argument,
  * it then returns a reference pointer to a static buffer created by the
- * function to store the reversed string, it's vulnerable to many things.
+ * function (using malloc or calloc to allocate memory for it) to store the 
+ * reversed string, it's vulnerable to many things.
  * */
 char *revstr2(const char *str);
 
@@ -33,7 +34,10 @@ int main()
 
 	char *p = revstr2(string);
 
-	printf("The string after reversal via fn2 is: %p\n", *p);
+	if (p == NULL)
+		fprintf(stderr, "ERROR: revstr2 returned a NULL pointer\n");
+	else
+		printf("The string after reversal via fn2 is: %s\n", p);
 
 	return 0;
 }
@@ -61,16 +65,32 @@ void revstr1(const char *str, char *output, size_t size)
 
 char *revstr2(const char *str)
 {
-	static char *buffer;
 	size_t length = str_len(str);
+	static char *buffer;
 
-	if (length > 0) {
-		for(size_t i = length - 1, j = 0; i <= length; i--) {
+	if (length != 0) {
+		if (buffer == NULL) {
+			buffer = malloc(sizeof(char) * (length + 1));
+			if (buffer == NULL) {
+				perror("malloc failed");
+				return NULL;
+			}
+		} else if (str_len(buffer) < length) {
+			char *temp = realloc(buffer, sizeof(char) * (length + 1));
+			if (temp == NULL) {
+				perror("realloc failed");
+				return NULL;
+			}
+		}
+
+		for (size_t i = length - 1, j = 0; j < length; i--, j++) {
 			buffer[j] = str[i];
 		}
 	} else {
 		fprintf(stderr, "ERROR: The string passed is empty");
 	}
+
+	buffer[length] = '\0';
 
 	return buffer;
 }
